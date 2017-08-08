@@ -26,17 +26,7 @@ namespace WinMan_Loader
         public static extern int SetForegroundWindow(IntPtr hWnd);
 
         [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll")]
-        static extern IntPtr GetWindowThreadProcessId(IntPtr hWnd, IntPtr ProcessId);
-
-        [DllImport("user32.dll")]
-        static extern IntPtr AttachThreadInput(IntPtr idAttach,
-                             IntPtr idAttachTo, bool fAttach);
-
-        [DllImport("user32.dll")]
-        static extern IntPtr GetFocus();
+        public static extern IntPtr PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
 
         //...
 
@@ -52,11 +42,13 @@ namespace WinMan_Loader
             {
                 System.Threading.Thread.Sleep(100);
             }
-            
+                      
             if (Control.IsKeyLocked(Keys.CapsLock)) // Checks Capslock is on
             {                
                 InputSimulator.SimulateKeyDown(VirtualKeyCode.SHIFT);                
-                ActivateApp("winman.exe");
+                ActivateApp("WinMan.exe *32");
+                ActivateApp("WinMan");
+                ActivateApp("Logon - Winman Live");
                 //ActivateApp("Logon - Winman Live");                
                 InputSimulator.SimulateTextEntry(oPass);
                 System.Threading.Thread.Sleep(100);
@@ -64,7 +56,9 @@ namespace WinMan_Loader
             }
             else
             {
-                ActivateApp("winman.exe");
+                ActivateApp("WinMan.exe *32");
+                ActivateApp("WinMan");
+                ActivateApp("Logon - Winman Live");
                 //ActivateApp("Logon - Winman Live");                
                 InputSimulator.SimulateTextEntry(oPass);
                 System.Threading.Thread.Sleep(100);                
@@ -78,9 +72,9 @@ namespace WinMan_Loader
 
             // Activate the first application we find with this name
             if (p.Count() > 0)
-            {                
-                ShowWindow(p[0].MainWindowHandle, 9);
+            {                  
                 SetForegroundWindow(p[0].MainWindowHandle);
+                ShowWindow(p[0].MainWindowHandle, 9);
             }
         }
 
