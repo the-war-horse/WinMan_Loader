@@ -55,8 +55,7 @@ namespace WinMan_Loader
                 //ActivateApp("WinMan.exe");
                 ActivateApp("Winman");
                 //ActivateApp("Logon - Winman Live");
-                InputSimulator.SimulateTextEntry(oPass);
-                System.Threading.Thread.Sleep(100);
+                InputSimulator.SimulateTextEntry(oPass);                
                 InputSimulator.SimulateKeyUp(VirtualKeyCode.SHIFT);
             }
             else
@@ -64,8 +63,7 @@ namespace WinMan_Loader
                 //ActivateApp("WinMan.exe");
                 ActivateApp("Winman");
                 //ActivateApp("Logon - Winman Live");
-                InputSimulator.SimulateTextEntry(oPass);
-                System.Threading.Thread.Sleep(100);                
+                InputSimulator.SimulateTextEntry(oPass);                              
             }
             InputSimulator.SimulateKeyPress(VirtualKeyCode.RETURN);           
         }
